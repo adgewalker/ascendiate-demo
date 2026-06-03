@@ -1,19 +1,22 @@
 ---
-import SkyImage from "./SkyImage.astro";
+import HeroArtwork from "./HeroArtwork.astro";
 // Copy from Nick's brief. Headline is the dominant element; eyebrow is the
 // smallest text; supporting description is subordinate to the headline.
-// Imagery is a restrained placeholder until real, narrative-led imagery lands.
+// Imagery is a conceptual treatment (HeroArtwork, from Claude Design) — pathways
+// converging on a point of light: direction, momentum, ascent.
 ---
 
 <section class="mx-auto max-w-canvas px-6 pt-16 md:px-12 lg:px-24">
-  <!-- Hero image with overlay -->
+  <!-- Hero graphic with overlay -->
   <hero-drift class="relative block h-[420px] overflow-hidden md:h-[520px] lg:h-[620px]">
     <div data-drift-target class="absolute inset-0">
-      <SkyImage tone="dusk" label="" />
+      <HeroArtwork />
     </div>
+    <!-- Darkens the lower band for headline legibility while letting the
+         convergence glow on the upper-right read through. -->
     <div
       class="pointer-events-none absolute inset-0"
-      style="background: linear-gradient(110deg, rgba(15,19,26,0.62) 0%, rgba(15,19,26,0.38) 38%, rgba(15,19,26,0.08) 70%, transparent 92%);"
+      style="background: linear-gradient(to top, rgb(15 23 40 / 0.78) 0%, rgb(15 23 40 / 0.45) 28%, rgb(15 23 40 / 0.05) 58%, transparent 80%);"
     >
     </div>
     <div class="absolute inset-x-8 bottom-10 md:inset-x-16 md:bottom-14">
@@ -30,7 +33,7 @@ import SkyImage from "./SkyImage.astro";
 
   <!-- Supporting description + CTA -->
   <div class="grid grid-cols-1 items-end gap-10 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24 lg:pb-22">
-    <p class="max-w-[560px] font-serif text-[20px] leading-[1.55] text-body-soft">
+    <p class="max-w-[560px] text-[20px] leading-[1.55] text-ink">
       Guiding strategic transactions, restructurings and operational improvement across the
       aviation sector.
     </p>

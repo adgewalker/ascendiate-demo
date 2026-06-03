@@ -2,28 +2,31 @@
 
 /* ───────────────────────────────────────────────────────────────
    Ascendiate theme
-   Editorial, typography-led. Inter (sans/display) + Lora (serif body).
-   Palette per Nick's brief: ink on paper, muted greys,
-   and the Ascendiate blue (logo mark + hairlines).
+   Editorial, typography-led. A single modern sans-serif (Inter),
+   consistent with the logo. Palette per Nick's brief: ink on paper,
+   muted greys, and the Ascendiate blue (logo, hover, interactive).
    ─────────────────────────────────────────────────────────────── */
 @theme {
-  /* Brand / surface colours */
+  /* Brand / surface colours — per Nick's palette */
   --color-ink: #111827; /* primary text, buttons */
-  --color-mid: #3F4A59; /* muted labels, secondary text */
+  --color-mid: #3f4a59; /* secondary text, muted labels, body copy */
   --color-paper: #ffffff; /* page background */
-  --color-blue: #1848b4; /* ascendiate blue — logo mark + hairlines */
+  --color-blue: #1848b4; /* ascendiate blue — logo, hover states, interactive */
 
-  /* Body copy tones (warm near-blacks for serif paragraphs) */
-  --color-body: #3a3530;
-  --color-body-soft: #2a2620;
+  /* Dark sections (reserved for future use, e.g. hero overlay) */
+  --color-navy: #0f1728; /* dark navy */
+  --color-navy-charcoal: #1a2436; /* charcoal navy */
+
+  /* Body copy maps to secondary text; alias kept so existing
+     `text-body` utilities stay valid and stay on-palette. */
+  --color-body: var(--color-mid);
 
   /* Hairline rules (blue at low alpha) */
   --color-hairline: rgb(24 72 180 / 0.2);
   --color-hairline-light: rgb(24 72 180 / 0.12);
 
-  /* Type families */
+  /* Type — a single modern sans-serif, consistent with the logo. */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Lora", ui-serif, Georgia, serif;
 
   /* Letter-spacing tokens used across the design */
   --tracking-logo: 0.18em;

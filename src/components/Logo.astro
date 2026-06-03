@@ -9,7 +9,8 @@ interface Props {
 
 const { size = "md", class: className = "" } = Astro.props;
 
-const sizeClass = size === "sm" ? "text-[14px]" : "text-[15px]";
+const sizeClass = size === "sm" ? "text-[14px]" : "text-[23px]";
+const markClass = size === "sm" ? "size-5" : "size-7";
 ---
 
 <a
@@ -23,7 +24,7 @@ const sizeClass = size === "sm" ? "text-[14px]" : "text-[15px]";
   ]}
 >
   <svg
-    class="block size-5 shrink-0 text-blue"
+    class:list={["block shrink-0 text-blue", markClass]}
     viewBox="0 0 48 48"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

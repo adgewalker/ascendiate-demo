@@ -1,0 +1,75 @@
+---
+/**
+ * Atmospheric conceptual mark for the About section — outer nodes drawn together
+ * into a single convergence point: connection, integration, the bringing-together
+ * of competing interests into one direction.
+ *
+ * The convergence point sits on the LEFT; nodes spread rightward across the
+ * section so the motif reads from left to right beneath the prose. Scaled up and
+ * present, but still in the Ascendiate blue at a restrained opacity — it supports
+ * the narrative rather than illustrating it. Content layers above it.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+const W = 1200;
+const H = 480;
+
+// Convergence point — anchored on the left and set high, so the cluster fans
+// out around the LOWER half of the circle and spreads down beneath the text.
+const cx = 230;
+const cy = 120;
+
+// Outer nodes arranged across the lower arc — every node sits below the
+// convergence point, so its connecting line radiates downward, fanning from
+// near-horizontal on the right round to steep beneath the point. Covers more
+// vertical space beneath the prose.
+const nodes = [
+  { x: 360, y: 250 },
+  { x: 150, y: 320 },
+  { x: 300, y: 430 },
+  { x: 480, y: 380 },
+  { x: 520, y: 210 },
+  { x: 680, y: 320 },
+  { x: 720, y: 460 },
+  { x: 860, y: 240 },
+  { x: 940, y: 410 },
+  { x: 1080, y: 300 },
+  { x: 1160, y: 450 },
+];
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  preserveAspectRatio="xMidYMid meet"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["block h-auto w-full", className]}
+  aria-hidden="true"
+>
+  <defs>
+    <!-- Soft halo around the convergence point -->
+    <radialGradient id="cm-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-blue)" stop-opacity="0.45"></stop>
+      <stop offset="55%" stop-color="var(--color-blue)" stop-opacity="0.12"></stop>
+      <stop offset="100%" stop-color="var(--color-blue)" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <!-- Connecting lines, every node drawn toward the convergence point -->
+  <g stroke="var(--color-blue)" stroke-opacity="0.5" stroke-width="1.5" fill="none">
+    {nodes.map((n) => <line x1={n.x} y1={n.y} x2={cx} y2={cy} />)}
+  </g>
+
+  <!-- Outer nodes -->
+  <g fill="var(--color-blue)" fill-opacity="0.85">
+    {nodes.map((n) => <circle cx={n.x} cy={n.y} r="6" />)}
+  </g>
+
+  <!-- Convergence: halo + the one solid point -->
+  <circle cx={cx} cy={cy} r="120" fill="url(#cm-glow)"></circle>
+  <circle cx={cx} cy={cy} r="11" fill="var(--color-blue)"></circle>
+  <circle cx={cx} cy={cy} r="22" fill="none" stroke="var(--color-blue)" stroke-opacity="0.5"
+    stroke-width="1.5"></circle>
+</svg>

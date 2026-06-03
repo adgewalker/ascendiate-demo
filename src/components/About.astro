@@ -1,4 +1,5 @@
 ---
+import ConvergenceMark from "./ConvergenceMark.astro";
 // Copy from Nick's brief. Editorial, not card-based: the three passages
 // (Challenge / Route forward / Ascendiate) read as a connected narrative,
 // distinguished through typography, spacing and rhythm rather than panels.
@@ -18,8 +19,20 @@ const passages = [
 ];
 ---
 
-<section id="about" class="mx-auto max-w-canvas px-6 py-20 md:px-12 lg:px-24 lg:py-24">
-  <div class="grid grid-cols-1 gap-10 lg:grid-cols-[180px_1fr] lg:gap-24">
+<section id="about" class="relative overflow-hidden py-20 lg:py-24">
+  <!-- Atmospheric backdrop: nodes converging to a point on the left, spreading
+       rightward beneath the prose. Large and present, but held back enough that
+       the text stays primary. Content layers above via z-index. -->
+  <div
+    class="pointer-events-none absolute inset-x-0 top-1/4 -translate-y-1/2 opacity-30"
+    aria-hidden="true"
+  >
+    <div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
+      <ConvergenceMark />
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto grid max-w-canvas grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-[180px_1fr] lg:gap-24 lg:px-24">
     <div class="section-label">About</div>
 
     <div>
@@ -31,19 +44,17 @@ const passages = [
         Creating, growing and stabilising businesses. Building stronger organisations.
       </h2>
 
-      {/*
-        ATMOSPHERIC VISUAL — placeholder. Nick wants one restrained, conceptual
-        element reinforcing connection / pathways / convergence (not aviation,
-        not the gradient placeholder). Secondary to the content. TODO: design + add.
-      */}
-
-      <!-- Connected narrative: subtle labels, flowing prose. -->
-      <div class="mt-14 max-w-[760px] space-y-12">
+      <!-- Connected narrative: subtle labels, flowing prose. Hierarchy comes
+           from weight, size, colour and leading — a light editorial body in
+           primary ink against the medium-weight labels above. -->
+      <div class="mt-16 max-w-[720px] space-y-14">
         {
           passages.map((p) => (
-            <div class="grid grid-cols-1 gap-x-12 gap-y-3 md:grid-cols-[160px_1fr]" data-reveal>
-              <div class="section-label pt-1.5">{p.label}</div>
-              <p class="font-serif text-[18px] leading-[1.7] text-body">{p.body}</p>
+            <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
+              <div class="section-label pt-2.5">{p.label}</div>
+              <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
+                {p.body}
+              </p>
             </div>
           ))
         }
