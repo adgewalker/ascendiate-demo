@@ -1,0 +1,72 @@
+---
+import Logo from "./Logo.astro";
+
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#work" },
+  { label: "Approach", href: "#approach" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<site-nav
+  class="sticky top-0 z-50 block bg-paper/95 backdrop-blur-sm transition-shadow duration-300 data-[scrolled]:shadow-[0_1px_0_var(--color-hairline-light)]"
+>
+  <nav
+    class="mx-auto flex h-[76px] max-w-canvas items-center justify-between px-6 transition-[height] duration-300 ease-out md:px-12 lg:px-24"
+    data-nav-bar
+    aria-label="Primary"
+  >
+    <Logo />
+
+    <!-- Desktop links -->
+    <ul class="hidden list-none items-center gap-9 lg:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a class="nav-link font-sans text-[14px] text-mid" href={l.href}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Mobile toggle -->
+    <button
+      type="button"
+      data-nav-toggle
+      aria-expanded="false"
+      aria-controls="nav-panel"
+      aria-label="Toggle menu"
+      class="relative flex h-8 w-9 flex-col items-center justify-center gap-[5px] lg:hidden"
+    >
+      <span class="block h-px w-6 bg-ink transition-transform"></span>
+      <span class="block h-px w-6 bg-ink transition-opacity"></span>
+      <span class="block h-px w-6 bg-ink transition-transform"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile panel -->
+  <div
+    id="nav-panel"
+    data-nav-panel
+    class="hidden border-t border-hairline-light bg-paper px-6 py-4 data-[open]:block lg:!hidden"
+  >
+    <ul class="flex list-none flex-col gap-1">
+      {
+        links.map((l) => (
+          <li>
+            <a class="block py-2 font-sans text-[15px] text-mid transition-colors duration-200 hover:text-blue" href={l.href}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</site-nav>
+
+<script>
+  import "../scripts/SiteNav";
+</script>

@@ -1,0 +1,36 @@
+---
+/**
+ * Wordmark. Sized via the `size` prop; spacing/weight come from the theme.
+ */
+interface Props {
+  size?: "sm" | "md";
+  class?: string;
+}
+
+const { size = "md", class: className = "" } = Astro.props;
+
+const sizeClass = size === "sm" ? "text-[14px]" : "text-[15px]";
+---
+
+<a
+  href="#top"
+  class:list={[
+    "inline-flex items-center gap-2.5",
+    "font-sans font-semibold uppercase text-ink",
+    "tracking-[0.18em]",
+    sizeClass,
+    className,
+  ]}
+>
+  <svg
+    class="block size-5 shrink-0 text-blue"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path d="M24 4 L44 24 L24 44 L4 24 Z" stroke="currentColor" stroke-width="3" fill="none"></path>
+    <path d="M24 12 L36 24 L24 36 L12 24 Z" fill="currentColor"></path>
+  </svg>
+  <span>Ascendiate</span>
+</a>

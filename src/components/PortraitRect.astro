@@ -1,0 +1,57 @@
+---
+/**
+ * Neutral portrait placeholder standing in for a founder photo.
+ * Ported from the concept's <PortraitRect>. Swap for a real <img> when assets land.
+ */
+type Tone = "warm" | "cool" | "dusk";
+
+interface Props {
+  tone?: Tone;
+  label?: string;
+  class?: string;
+}
+
+const { tone = "warm", label = "Portrait — Nick Zaklama", class: className = "" } = Astro.props;
+
+const palettes: Record<Tone, { a: string; b: string; c: string }> = {
+  warm: { a: "#c9bea8", b: "#8d8270", c: "#5b5347" },
+  cool: { a: "#aebac7", b: "#6f7d8e", c: "#3e4856" },
+  dusk: { a: "#3a4452", b: "#212a37", c: "#10151c" },
+};
+
+const p = palettes[tone];
+const id = `pr-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg
+  viewBox="0 0 360 460"
+  preserveAspectRatio="xMidYMid slice"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["block h-full w-full", className]}
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color={p.a} />
+      <stop offset="100%" stop-color={p.c} />
+    </linearGradient>
+  </defs>
+  <rect width="360" height="460" fill={`url(#${id})`}></rect>
+  <ellipse cx="180" cy="175" rx="79" ry="92" fill={p.b} fill-opacity="0.55"></ellipse>
+  <rect x="79" y="285" width="202" height="207" fill={p.b} fill-opacity="0.6"></rect>
+  {
+    label && (
+      <text
+        x="340"
+        y="442"
+        text-anchor="end"
+        font-family="'Inter', sans-serif"
+        font-size="10"
+        fill="rgba(255,255,255,0.55)"
+        letter-spacing="0.16em"
+      >
+        {label}
+      </text>
+    )
+  }
+</svg>

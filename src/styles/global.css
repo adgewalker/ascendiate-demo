@@ -1,1 +1,197 @@
 @import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────
+   Ascendiate theme
+   Editorial, typography-led. Inter (sans/display) + Lora (serif body).
+   Palette per Nick's brief: ink on paper, muted greys,
+   and the Ascendiate blue (logo mark + hairlines).
+   ─────────────────────────────────────────────────────────────── */
+@theme {
+  /* Brand / surface colours */
+  --color-ink: #111827; /* primary text, buttons */
+  --color-mid: #3F4A59; /* muted labels, secondary text */
+  --color-paper: #ffffff; /* page background */
+  --color-blue: #1848b4; /* ascendiate blue — logo mark + hairlines */
+
+  /* Body copy tones (warm near-blacks for serif paragraphs) */
+  --color-body: #3a3530;
+  --color-body-soft: #2a2620;
+
+  /* Hairline rules (blue at low alpha) */
+  --color-hairline: rgb(24 72 180 / 0.2);
+  --color-hairline-light: rgb(24 72 180 / 0.12);
+
+  /* Type families */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", ui-serif, Georgia, serif;
+
+  /* Letter-spacing tokens used across the design */
+  --tracking-logo: 0.18em;
+  --tracking-label: 0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.03em;
+
+  /* Max content width of the editorial canvas */
+  --container-canvas: 1440px;
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Reusable editorial primitives ─── */
+
+/* Hairline rule between sections */
+.rule {
+  height: 1px;
+  background: var(--color-hairline);
+}
+.rule--light {
+  background: var(--color-hairline-light);
+}
+
+/* Small uppercase section label */
+.section-label {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-mid);
+}
+
+/* Desktop nav link — text shifts to the Ascendiate blue and a blue
+   underline grows in from the left, both on a short transition. */
+.nav-link {
+  position: relative;
+  color: var(--color-mid);
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--color-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-blue);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .nav-link::after {
+    transition: none;
+  }
+}
+
+/* Underlined inline link / faux-button used in nav + CTAs */
+.ink-underline {
+  display: inline-block;
+  border-bottom: 1px solid var(--color-ink);
+  padding-bottom: 2px;
+  color: var(--color-ink);
+}
+/* Only actual links get the blue hover; non-interactive labels stay put. */
+a.ink-underline {
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+a.ink-underline:hover,
+a.ink-underline:focus-visible {
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+@media (prefers-reduced-motion: reduce) {
+  a.ink-underline {
+    transition: none;
+  }
+}
+
+/* Solid ink button — shifts to the Ascendiate blue on hover. */
+.btn-ink {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btn-ink:hover,
+.btn-ink:focus-visible {
+  background: var(--color-blue);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-ink {
+    transition: none;
+  }
+}
+
+/* ─── Sticky nav squash (driven by <site-nav>) ─── */
+/* The host toggles [data-scrolled] past a small scroll threshold; the inner
+   bar shrinks once and then holds. Height transition lives on the bar itself. */
+site-nav[data-scrolled] [data-nav-bar] {
+  height: 60px;
+}
+
+/* ─── Hero drift animation (driven by <hero-drift>) ─── */
+@keyframes heroDrift {
+  0% {
+    transform: scale(1.06) translateY(0);
+  }
+  100% {
+    transform: scale(1.1) translateY(-1.5%);
+  }
+}
+.hero-img-motion {
+  animation: heroDrift 14s ease-in-out infinite alternate;
+  transform-origin: center 55%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-img-motion {
+    animation: none;
+  }
+}
+
+/* ─── Scroll reveal (driven by <scroll-reveal>) ─── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

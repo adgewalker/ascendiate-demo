@@ -1,78 +1,33 @@
 ---
-import '../styles/global.css';
-import { getCollection } from 'astro:content';
-import NavBar from '../components/NavBar.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Recommendations from '../components/Recommendations.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-
-const [aboutEntry] = await getCollection('about');
-const recommendations = await getCollection('recommendations');
-const experience = await getCollection('experience');
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Approach from "../components/Approach.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import Rule from "../components/Rule.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={`${aboutEntry.data.name} — ${aboutEntry.data.title}`} />
-    <title>{aboutEntry.data.name}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  </head>
-  <body class="bg-[#0a0d14] text-[#c8cdd8] antialiased">
-    <!-- <NavBar name={aboutEntry.data.name} />
-    <Hero about={aboutEntry.data} />
-    <About about={aboutEntry.data} />
-    <Experience items={experience.map(e => e.data)} />
-    <Recommendations items={recommendations.map(r => r.data)} />
-    <Contact about={aboutEntry.data} />
-    <Footer name={aboutEntry.data.name} /> -->
-  </body>
-</html>
+<Layout>
+  <scroll-reveal id="top" class="block">
+    <Nav />
+    <Rule />
+    <Hero />
+    <Rule />
+    <About />
+    <Rule />
+    <Experience />
+    <Rule />
+    <Approach />
+    <Rule />
+    <Contact />
+    <Rule />
+    <Footer />
+  </scroll-reveal>
 
-<style is:global>
-  :root {
-    --amber: #e8a030;
-    --amber-dim: #a06818;
-    --navy: #0a0d14;
-    --panel: #10141f;
-    --border: #1e2535;
-    --text-muted: #5a6278;
-    --text-body: #c8cdd8;
-  }
-
-  ::selection {
-    background: var(--amber);
-    color: var(--navy);
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--navy); }
-  ::-webkit-scrollbar-thumb { background: var(--amber-dim); border-radius: 2px; }
-
-  /* Fade-in on scroll utility */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-</style>
-
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  <script>
+    import "../scripts/ScrollReveal";
+  </script>
+</Layout>

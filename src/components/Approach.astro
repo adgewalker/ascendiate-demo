@@ -1,0 +1,34 @@
+---
+const points = [
+  ["Independence", "No affiliated financing desk. Every recommendation made on its merits."],
+  ["Direct engagement", "Clients work with Nick directly throughout."],
+  ["Clear scope and fees", "Agreed in writing, with defined deliverables and transparent pricing."],
+  ["Candour", "If the deal doesn’t work, we say so."],
+];
+---
+
+<section id="approach" class="mx-auto max-w-canvas px-6 py-20 md:px-12 lg:px-24 lg:py-24">
+  <div class="grid grid-cols-1 gap-10 lg:grid-cols-[180px_1fr] lg:gap-24">
+    <div class="section-label">Approach</div>
+
+    <div>
+      <h2
+        class="mb-12 max-w-[820px] font-sans text-[clamp(1.75rem,3vw,38px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
+        data-reveal
+      >
+        No house view. No quota. Just the brief.
+      </h2>
+
+      <div class="grid grid-cols-1 gap-x-20 gap-y-9 sm:grid-cols-2">
+        {
+          points.map(([t, d]) => (
+            <div data-reveal>
+              <div class="mb-2.5 font-sans text-[22px] font-medium tracking-[-0.01em] text-ink">{t}</div>
+              <div class="font-serif text-[16px] leading-[1.65] text-body">{d}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+---
+/** Full-bleed hairline rule between sections. */
+interface Props {
+  tone?: "strong" | "light";
+}
+const { tone = "strong" } = Astro.props;
+---
+
+<div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
+  <div class:list={["rule", tone === "light" && "rule--light"]}></div>
+</div>

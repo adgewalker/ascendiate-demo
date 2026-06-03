@@ -1,75 +1,52 @@
 ---
-interface Props {
-  about: {
-    name: string;
-    title: string;
-    summary: string;
-    hours?: string;
-    licences?: string[];
-    ratings?: string[];
-    linkedin?: string;
-    email: string;
-  };
-}
-const { about } = Astro.props;
+// Copy from Nick's brief. Editorial, not card-based: the three passages
+// (Challenge / Route forward / Ascendiate) read as a connected narrative,
+// distinguished through typography, spacing and rhythm rather than panels.
+const passages = [
+  {
+    label: "Challenge",
+    body: "Organisations rarely struggle because they lack ambition, expertise or opportunity. The challenge is rarely the destination itself, but bringing together competing stakeholder interests to create the pathway from idea to outcome. The strongest outcomes do more than solve the immediate challenge. They strengthen organisations.",
+  },
+  {
+    label: "Route forward",
+    body: "Progress requires distinguishing the issues that matter most and focusing effort on the decisions that will shape the outcome. The expertise and perspectives required to turn vision into reality rarely sit in one place and are often shaped by conflicting priorities and constraints. Realising that vision requires reconciling these often divergent dynamics in a way that creates direction, builds momentum and delivers tangible results.",
+  },
+  {
+    label: "Ascendiate",
+    body: "Ascendiate is an independent platform created to turn competing priorities into clear direction and momentum, transforming goals into achievement. Ascendiate’s value is not only to achieve today’s objectives, but also to build the organisational capability required to address tomorrow’s challenges.",
+  },
+];
 ---
 
-<section id="about" class="py-28 px-6">
-  <div class="max-w-6xl mx-auto">
+<section id="about" class="mx-auto max-w-canvas px-6 py-20 md:px-12 lg:px-24 lg:py-24">
+  <div class="grid grid-cols-1 gap-10 lg:grid-cols-[180px_1fr] lg:gap-24">
+    <div class="section-label">About</div>
 
-    <!-- Section label -->
-    <div class="flex items-center gap-4 mb-16 reveal">
-      <span class="font-['JetBrains_Mono'] text-[10px] tracking-[0.35em] text-[#e8a030] uppercase">01 — About</span>
-      <div class="flex-1 h-px bg-[#1e2535]"></div>
-    </div>
+    <div>
+      <!-- Supporting statement — subordinate to nothing but the heading. -->
+      <h2
+        class="max-w-[760px] font-sans text-[clamp(1.75rem,3vw,40px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
+        data-reveal
+      >
+        Creating, growing and stabilising businesses. Building stronger organisations.
+      </h2>
 
-    <div class="grid md:grid-cols-2 gap-16 items-start">
+      {/*
+        ATMOSPHERIC VISUAL — placeholder. Nick wants one restrained, conceptual
+        element reinforcing connection / pathways / convergence (not aviation,
+        not the gradient placeholder). Secondary to the content. TODO: design + add.
+      */}
 
-      <!-- Summary text -->
-      <div class="reveal">
-        <h2 class="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.5rem)] text-white leading-tight tracking-wide mb-6">
-          Precision, Professionalism,<br/>
-          <span class="text-[#e8a030]">Proven Experience</span>
-        </h2>
-        <p class="font-['Crimson_Pro'] text-lg leading-relaxed text-[#c8cdd8]/80">
-          {about.summary}
-        </p>
-      </div>
-
-      <!-- Stats / credentials panel -->
-      <div class="reveal" style="transition-delay: 0.15s">
-        <div class="border border-[#1e2535] bg-[#10141f] p-8 space-y-6">
-
-          {about.hours && (
-            <div class="pb-6 border-b border-[#1e2535]">
-              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-1">Total Flight Hours</p>
-              <p class="font-['Bebas_Neue'] text-4xl text-[#e8a030] tracking-wider">{about.hours}</p>
+      <!-- Connected narrative: subtle labels, flowing prose. -->
+      <div class="mt-14 max-w-[760px] space-y-12">
+        {
+          passages.map((p) => (
+            <div class="grid grid-cols-1 gap-x-12 gap-y-3 md:grid-cols-[160px_1fr]" data-reveal>
+              <div class="section-label pt-1.5">{p.label}</div>
+              <p class="font-serif text-[18px] leading-[1.7] text-body">{p.body}</p>
             </div>
-          )}
-
-          {about.licences && about.licences.length > 0 && (
-            <div class="pb-6 border-b border-[#1e2535]">
-              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-3">Licences</p>
-              <div class="flex flex-wrap gap-2">
-                {about.licences.map(l => (
-                  <span class="font-['JetBrains_Mono'] text-xs px-3 py-1 border border-[#1e2535] text-[#c8cdd8]">{l}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {about.ratings && about.ratings.length > 0 && (
-            <div>
-              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-3">Type Ratings</p>
-              <div class="flex flex-wrap gap-2">
-                {about.ratings.map(r => (
-                  <span class="font-['JetBrains_Mono'] text-xs px-3 py-1 bg-[#e8a030]/10 border border-[#e8a030]/30 text-[#e8a030]">{r}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-        </div>
+          ))
+        }
       </div>
     </div>
   </div>
