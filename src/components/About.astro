@@ -28,7 +28,9 @@ const passages = [
     aria-hidden="true"
   >
     <div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
-      <ConvergenceMark />
+      <!-- Nudged left at lg so the convergence point sits closer to the
+           'About' label in the content grid's left column. -->
+      <ConvergenceMark class="lg:-translate-x-32" />
     </div>
   </div>
 
