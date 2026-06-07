@@ -67,12 +67,25 @@ body {
   background: var(--color-hairline-light);
 }
 
-/* Small uppercase section label */
+/* Small uppercase section label — used for in-section subheadings
+   (Challenge, Route forward, Experience themes, Contact rows). */
 .section-label {
   font-size: 0.75rem; /* 12px */
   font-weight: 500;
   letter-spacing: var(--tracking-label);
   color: var(--color-mid);
+}
+
+/* Top-level section header — names the whole section (About, Experience,
+   Approach, Contact). A tier above .section-label, kept monochrome: lifted
+   to primary ink, slightly larger and heavier than the grey subheadings, so
+   it anchors the section without adding colour. */
+.section-header {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink);
 }
 
 /* Desktop nav link — text shifts to the Ascendiate blue and a blue
