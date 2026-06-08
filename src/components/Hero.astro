@@ -25,23 +25,10 @@ import HeroArtwork from "./HeroArtwork.astro";
       >
         Shaping vision into value
       </h1>
-      <!-- Grounded brand signature: mark + ASCENDIATE wordmark, then a hairline
-           divider and the descriptor — read as one lockup tied to the headline's
-           baseline. Kept monochrome white; the Ascendiate blue is reserved for
-           light backgrounds and reads muddy against the navy artwork. -->
-      <div class="mt-6 flex items-center gap-3 font-sans text-[12px] text-white/70">
-        <svg
-          class="block size-3.5 shrink-0 text-white"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path d="M24 4 L44 24 L24 44 L4 24 Z" stroke="currentColor" stroke-width="3" fill="none"></path>
-          <path d="M24 12 L36 24 L24 36 L12 24 Z" fill="currentColor"></path>
-        </svg>
-        <span class="font-semibold uppercase tracking-logo text-white">Ascendiate</span>
-        <span class="h-3.5 w-px bg-white/25"></span>
+      <!-- Descriptor tied to the headline's baseline, led by a hairline divider
+           that spans the width of the descriptor text. -->
+      <div class="mt-6 inline-block font-sans text-[12px] text-white/70">
+        <span class="mb-3 block h-px w-full bg-white/25"></span>
         <span class="font-medium tracking-[0.06em]">Trusted partner to leadership teams</span>
       </div>
     </div>

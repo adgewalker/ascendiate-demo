@@ -1,33 +1,96 @@
 ---
-const points = [
-  ["Independence", "No affiliated financing desk. Every recommendation made on its merits."],
-  ["Direct engagement", "Clients work with Nick directly throughout."],
-  ["Clear scope and fees", "Agreed in writing, with defined deliverables and transparent pricing."],
-  ["Candour", "If the deal doesn’t work, we say so."],
+// Copy from Nick's brief. Editorial, not card- or framework-based: continues
+// the visual language of About. The reader moves section heading → supporting
+// statement → philosophy → individual perspective. Nicholas Zaklama becomes
+// visible here for the first time — restrained, secondary to the content.
+//
+// Photo: drop the founder portrait at the path below (portrait orientation
+// reads best). Rename `src` if you use a different filename.
+const portraitSrc = "/nicholas-zaklama.jpg";
+
+// The two framing passages either side of the pull-quote. Same label+prose
+// rhythm as About, so the sections feel of a piece.
+const passages = [
+  {
+    label: "Starting point",
+    body: "Every mandate begins with understanding what leadership is seeking to achieve. The immediate objective provides the starting point. Understanding the broader context often reveals opportunities that extend beyond the objective itself.",
+  },
+  {
+    label: "Ascendiate",
+    body: "Ascendiate’s approach is therefore to use immediate objectives as opportunities to build stronger organisations.",
+  },
 ];
 ---
 
 <section id="approach" class="mx-auto max-w-canvas px-6 py-20 md:px-12 lg:px-24 lg:py-24">
-  <div class="grid grid-cols-1 gap-10 lg:grid-cols-[180px_1fr] lg:gap-24">
+  <div class="grid grid-cols-1 gap-10 px-0 lg:grid-cols-[180px_1fr] lg:gap-24">
     <div class="section-header">Approach</div>
 
     <div>
+      <!-- Supporting statement — subordinate only to the heading. -->
       <h2
-        class="mb-12 max-w-[820px] font-sans text-[clamp(1.75rem,3vw,38px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
+        class="max-w-[760px] font-sans text-[clamp(1.75rem,3vw,40px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
         data-reveal
       >
-        No house view. No quota. Just the brief.
+        Achieving today’s objectives. Building tomorrow’s capability.
       </h2>
 
-      <div class="grid grid-cols-1 gap-x-20 gap-y-9 sm:grid-cols-2">
-        {
-          points.map(([t, d]) => (
-            <div data-reveal>
-              <div class="mb-2.5 font-sans text-[22px] font-medium tracking-[-0.01em] text-ink">{t}</div>
-              <div class="text-[16px] leading-[1.65] text-body">{d}</div>
-            </div>
-          ))
-        }
+      <div class="mt-16 max-w-[720px] space-y-14">
+        <!-- Starting point -->
+        <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
+          <div class="section-label pt-2.5">{passages[0].label}</div>
+          <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
+            {passages[0].body}
+          </p>
+        </div>
+
+        <!-- Insight: the observation set as a restrained pull-quote — the
+             section's pivot, leading into the founder. -->
+        <figure class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
+          <div class="section-label pt-2.5">Insight</div>
+          <div>
+            <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
+              Nicholas Zaklama founded Ascendiate having made a simple observation after almost 25
+              years working alongside leadership teams:
+            </p>
+            <blockquote
+              class="mt-8 max-w-[640px] font-sans text-[clamp(1.5rem,2.4vw,30px)] font-light italic leading-[1.4] tracking-[-0.015em] text-ink"
+            >
+              “The strongest outcomes are achieved when immediate objectives become opportunities to
+              strengthen the organisation for what comes next.”
+            </blockquote>
+          </div>
+        </figure>
+
+        <!-- Ascendiate -->
+        <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
+          <div class="section-label pt-2.5">{passages[1].label}</div>
+          <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
+            {passages[1].body}
+          </p>
+        </div>
+      </div>
+
+      <!-- Founder: restrained, secondary to the content. Portrait + name/title
+           only — no biography, no credentials, per the brief. -->
+      <div
+        class="mt-16 flex items-center gap-6 border-t border-hairline-light pt-10 md:ml-[208px] md:mt-14"
+        data-reveal
+      >
+        <img
+          src={portraitSrc}
+          alt="Nicholas Zaklama"
+          class="size-20 shrink-0 rounded-full object-cover object-[center_15%] grayscale md:size-24"
+          width="96"
+          height="96"
+          loading="lazy"
+        />
+        <div>
+          <div class="font-sans text-[18px] font-medium tracking-[-0.01em] text-ink">
+            Nicholas Zaklama
+          </div>
+          <div class="mt-0.5 text-[15px] text-body">Founder and Managing Director</div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 ---
 /**
- * Wordmark. Sized via the `size` prop; spacing/weight come from the theme.
+ * Logo lockup (mark + wordmark) served as a raster asset. Sized via the
+ * `size` prop; the image preserves its own aspect ratio.
  */
 interface Props {
   size?: "sm" | "md";
@@ -9,29 +10,16 @@ interface Props {
 
 const { size = "md", class: className = "" } = Astro.props;
 
-const sizeClass = size === "sm" ? "text-[14px]" : "text-[23px]";
-const markClass = size === "sm" ? "size-5" : "size-7";
+// Heights tuned to roughly match the previous wordmark cap height.
+const heightClass = size === "sm" ? "h-6" : "h-9";
 ---
 
-<a
-  href="#top"
-  class:list={[
-    "inline-flex items-center gap-2.5",
-    "font-sans font-semibold uppercase text-ink",
-    "tracking-[0.18em]",
-    sizeClass,
-    className,
-  ]}
->
-  <svg
-    class:list={["block shrink-0 text-blue", markClass]}
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path d="M24 4 L44 24 L24 44 L4 24 Z" stroke="currentColor" stroke-width="3" fill="none"></path>
-    <path d="M24 12 L36 24 L24 36 L12 24 Z" fill="currentColor"></path>
-  </svg>
-  <span>Ascendiate</span>
+<a href="#top" class:list={["inline-flex items-center", className]}>
+  <img
+    src="/ascendiate-logo.png"
+    alt="Ascendiate"
+    class:list={["block w-auto", heightClass]}
+    width="524"
+    height="174"
+  />
 </a>
