@@ -1,6 +1,15 @@
 ---
 import EditorialImage from "./EditorialImage.astro";
 
+interface Props {
+  /** Real photograph for the hero slot. Omit for the placeholder version. */
+  image?: string;
+  imageAlt?: string;
+  /** Crop focus, so the meaningful part of the photograph stays in frame. */
+  imagePosition?: string;
+}
+const { image, imageAlt = "", imagePosition } = Astro.props;
+
 /**
  * Hero — rebuilt to Nick's refinement brief and rough visualisation.
  *
@@ -20,7 +29,7 @@ import EditorialImage from "./EditorialImage.astro";
 
 <section class="border-b border-hairline-light">
   <div
-    class="mx-auto grid max-w-canvas grid-cols-1 items-stretch lg:grid-cols-[1.05fr_1fr]"
+    class="mx-auto grid max-w-canvas grid-cols-1 items-stretch lg:grid-cols-[1.5fr_1fr]"
   >
     <!-- Text half -->
     <div
@@ -48,10 +57,13 @@ import EditorialImage from "./EditorialImage.astro";
     </div>
 
     <!-- Image half — full-bleed to the right edge of the canvas -->
-    <div class="min-h-[340px] lg:min-h-[620px]">
+    <div class="min-h-[340px] lg:min-h-[600px]">
       <EditorialImage
         class="h-full"
         ratio="fill"
+        src={image}
+        alt={imageAlt}
+        position={imagePosition}
         note="Contemporary architecture — light, geometry, considered judgement"
       />
     </div>

@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Mandates from "../components/Mandates.astro";
+import Approach from "../components/Approach.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import Rule from "../components/Rule.astro";
+
+/**
+ * The imagery version of the demo.
+ *
+ * Identical in structure, content and typography to the main page — it uses
+ * the same components — but real photographs are passed into the image
+ * slots. Keeping both pages on one set of components means the two versions
+ * cannot drift apart: any change to the editorial structure shows up in
+ * both, and only the imagery differs.
+ *
+ * Sections without a photograph yet keep their placeholders.
+ */
+---
+
+<Layout title="Ascendiate — with imagery">
+  <scroll-reveal id="top" class="block">
+    <Nav />
+    <Rule />
+    <Hero
+      image="/hero-architecture.jpg"
+      imageAlt="Steel and glass atrium receding to a distant point of light, with a lone figure walking towards it"
+    />
+    <Rule />
+    <About />
+    <Rule />
+    <Approach />
+    <Rule />
+    <Mandates />
+    <Rule />
+    <Contact />
+    <Rule />
+    <Footer />
+  </scroll-reveal>
+
+  <script>
+    import "../scripts/ScrollReveal";
+  </script>
+</Layout>

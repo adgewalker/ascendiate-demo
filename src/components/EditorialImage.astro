@@ -17,6 +17,8 @@ interface Props {
   ratio?: "landscape" | "portrait" | "square" | "fill";
   /** Shown in the placeholder so Nick can see what belongs where. */
   note?: string;
+  /** CSS object-position, to crop toward the part of the image that matters. */
+  position?: string;
   class?: string;
 }
 
@@ -25,6 +27,7 @@ const {
   alt = "",
   ratio = "landscape",
   note,
+  position,
   class: className = "",
 } = Astro.props;
 
@@ -39,7 +42,12 @@ const ratioClass = {
 <div class:list={["w-full", ratioClass, "overflow-hidden", className]}>
   {
     src ? (
-      <img src={src} alt={alt} class="h-full w-full object-cover" />
+      <img
+        src={src}
+        alt={alt}
+        class="h-full w-full object-cover"
+        style={position ? `object-position: ${position}` : undefined}
+      />
     ) : (
       <div
         class="flex h-full w-full flex-col items-center justify-center gap-1 border border-hairline-light bg-[#fafafa] text-center"

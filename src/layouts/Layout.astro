@@ -7,8 +7,9 @@ interface Props {
 }
 
 const {
-  title = "Ascendiate — Independent Aviation Advisory",
-  description = "Independent aviation advisory for airlines, lessors, banks and manufacturers.",
+  title = "Ascendiate — Shaping vision into value",
+  description =
+    "Independent judgement that aligns priorities, shapes decisions and leaves organisations stronger.",
 } = Astro.props;
 ---
 
@@ -18,7 +19,12 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <!-- Favicon: the Ascendiate mark (white A on the brand blue disc),
+         taken from the logo artwork. SVG for modern browsers, ICO as the
+         fallback, and a squared-off PNG for iOS home screens. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Inter — a single modern sans-serif, consistent with the logo. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
