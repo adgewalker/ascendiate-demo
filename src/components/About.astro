@@ -1,66 +1,106 @@
 ---
-import ConvergenceMark from "./ConvergenceMark.astro";
-// Copy from Nick's brief. Editorial, not card-based: the three passages
-// (Challenge / Route forward / Ascendiate) read as a connected narrative,
-// distinguished through typography, spacing and rhythm rather than panels.
-const passages = [
+import EditorialImage from "./EditorialImage.astro";
+
+/**
+ * About — rebuilt to Nick's refinement brief.
+ *
+ * Three blocks read as one narrative, each with four clearly separated
+ * editorial levels: block heading, lead statement, supporting text, body
+ * text. The lead statement dominates; everything below steps down in size,
+ * weight and colour. Blocks alternate sides to move the eye down the page.
+ */
+const blocks = [
   {
-    label: "Challenge",
-    body: "Organisations operate in environments that are constantly evolving. Priorities shift, organisations grow, markets change and new challenges emerge. As objectives evolve, organisations do not always adapt at the same pace.  The expertise and perspectives required to achieve those objectives rarely sit in one place and are often shaped by competing priorities and constraints.",
+    heading: "Challenge",
+    lead: "Organisations operate in constantly evolving environments.",
+    supporting:
+      "Priorities shift. Organisations grow. Markets change. New challenges emerge.",
+    body: [
+      "As objectives evolve, organisations do not always adapt at the same pace.",
+      "The expertise and perspectives needed to respond rarely sit in one place. They are often shaped by competing priorities and constraints.",
+    ],
+    imageNote: "Architectural — structure, light",
+    imageSide: "left" as const,
   },
   {
-    label: "Route forward",
-    body: "Achieving successful outcomes requires more than expertise alone. Realising that vision requires understanding what leadership is seeking to achieve and identifying what may be preventing progress.  It also requires reconciling often divergent priorities and constraints in a way that creates direction, builds momentum and delivers tangible results.",
+    heading: "Route forward",
+    lead: "Achieving successful outcomes requires more than expertise alone.",
+    supporting:
+      "Priorities compete. Constraints emerge. Decisions become harder. Opportunities are missed.",
+    body: [
+      "Achieving those outcomes begins with understanding what leadership is seeking to achieve and what may be preventing progress.",
+      "Reconciling divergent priorities and constraints creates direction, builds momentum and delivers tangible results.",
+    ],
+    imageNote: "Architectural — perspective, direction",
+    imageSide: "right" as const,
   },
   {
-    label: "Ascendiate",
-    body: "Ascendiate is an independent platform created to turn competing priorities into clear direction and momentum, transforming goals into achievement.  Ascendiate’s value is not only to achieve today’s objectives, but also to build the organisational capability required to address tomorrow’s challenges.",
+    heading: "Ascendiate",
+    lead: "Delivering today’s objectives. Strengthening tomorrow’s organisation.",
+    supporting: null,
+    body: [
+      "Ascendiate is an independent platform that transforms competing priorities into clear direction and momentum.",
+      "Its value lies not only in achieving today’s objectives, but also in building the organisational capability required to address tomorrow’s challenges.",
+    ],
+    imageNote: "Architectural — integration, resolution",
+    imageSide: "left" as const,
   },
 ];
 ---
 
-<section id="about" class="relative overflow-hidden py-20 lg:py-24">
-  <!-- Atmospheric backdrop: nodes converging to a point on the left, spreading
-       rightward beneath the prose. Large and present, but held back enough that
-       the text stays primary. Content layers above via z-index. -->
-  <div
-    class="pointer-events-none absolute inset-x-0 top-1/4 -translate-y-1/2 opacity-30"
-    aria-hidden="true"
-  >
-    <div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
-      <!-- Nudged left at lg so the convergence point sits closer to the
-           'About' label in the content grid's left column. -->
-      <ConvergenceMark class="lg:-translate-x-32" />
-    </div>
-  </div>
-
-  <div class="relative z-10 mx-auto grid max-w-canvas grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-[180px_1fr] lg:gap-24 lg:px-24">
-    <div class="section-header">About</div>
-
-    <div>
-      <!-- Supporting statement — subordinate to nothing but the heading. -->
+<section id="about" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
+    <!-- Section header + supporting statement -->
+    <div class="max-w-[900px]">
+      <div class="section-header text-[1rem] tracking-[0.1em] text-blue">
+        About
+        <span class="mt-3 block h-[3px] w-12 bg-blue"></span>
+      </div>
       <h2
-        class="max-w-[760px] font-sans text-[clamp(1.75rem,3vw,40px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
+        class="mt-6 font-sans text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink"
         data-reveal
       >
-        Creating, growing and stabilising businesses. Building stronger organisations.
+        Creating, growing and stabilising businesses. Building stronger
+        organisations.
       </h2>
+    </div>
 
-      <!-- Connected narrative: subtle labels, flowing prose. Hierarchy comes
-           from weight, size, colour and leading — a light editorial body in
-           primary ink against the medium-weight labels above. -->
-      <div class="mt-16 max-w-[720px] space-y-14">
-        {
-          passages.map((p) => (
-            <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
-              <div class="section-label pt-2.5">{p.label}</div>
-              <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
-                {p.body}
-              </p>
+    <!-- Editorial blocks, alternating sides -->
+    <div class="mt-20 space-y-24 lg:mt-28 lg:space-y-32">
+      {
+        blocks.map((block) => (
+          <div
+            class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
+            data-reveal
+          >
+            <EditorialImage
+              note={block.imageNote}
+              class:list={[block.imageSide === "right" && "lg:order-2"]}
+            />
+
+            <div class:list={[block.imageSide === "right" && "lg:order-1"]}>
+              <div class="block-heading">{block.heading}</div>
+
+              <h3 class="lead-statement mt-6 max-w-[30ch]">{block.lead}</h3>
+
+              {block.supporting && (
+                <p class="supporting-text mt-5 max-w-[46ch]">
+                  {block.supporting}
+                </p>
+              )}
+
+              {block.supporting && <div class="editorial-divider max-w-[46ch]" />}
+              {!block.supporting && <div class="mt-7" />}
+
+              <div class="max-w-[52ch]">
+                {block.body.map((para) => (
+                  <p class="body-text">{para}</p>
+                ))}
+              </div>
             </div>
-          ))
-        }
-      </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

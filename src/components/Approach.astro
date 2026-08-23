@@ -1,95 +1,144 @@
 ---
-// Copy from Nick's brief. Editorial, not card- or framework-based: continues
-// the visual language of About. The reader moves section heading → supporting
-// statement → philosophy → individual perspective. Nicholas Zaklama becomes
-// visible here for the first time — restrained, secondary to the content.
-//
-// Photo: drop the founder portrait at the path below (portrait orientation
-// reads best). Rename `src` if you use a different filename.
+import EditorialImage from "./EditorialImage.astro";
+
+/**
+ * Approach — rebuilt to Nick's refinement brief.
+ *
+ * Same four-level hierarchy as About, but the rhythm is mirrored: this
+ * section opens text-left where About opened image-left, so the two read as
+ * progression rather than repetition.
+ *
+ * The imagery becomes progressively quieter down the section, so that the
+ * portrait in the final block lands as the natural conclusion of the
+ * narrative — an integral part of the block, not a signature beneath it.
+ */
 const portraitSrc = "/nicholas-zaklama.jpg";
 
-// The two framing passages either side of the pull-quote. Same label+prose
-// rhythm as About, so the sections feel of a piece.
-const passages = [
+const blocks = [
   {
-    label: "Starting point",
-    body: "Every mandate begins with understanding what leadership is seeking to achieve. The immediate objective provides the starting point. Understanding the broader context often reveals opportunities that extend beyond the objective itself.",
+    heading: "Mandate",
+    lead: "Every engagement begins with an immediate objective.",
+    supporting: "Meeting that objective is essential.",
+    body: [
+      "Initial objectives provide direction, but rarely define the full opportunity.",
+    ],
+    imageNote: "Architectural — defined form",
+    imageSide: "right" as const,
   },
   {
-    label: "Ascendiate",
-    body: "Ascendiate’s approach is therefore to use immediate objectives as opportunities to build stronger organisations.",
+    heading: "Opportunity",
+    lead: "The greatest opportunities often lie beyond the original objective.",
+    supporting:
+      "The immediate objective often becomes the finish line, rather than the starting point for creating wider organisational value.",
+    body: [
+      "Recognising opportunities is only the beginning. Turning them into lasting improvements is what strengthens the organisation.",
+    ],
+    imageNote: "Architectural — opening out, more understated",
+    imageSide: "left" as const,
   },
 ];
+
+const finalBlock = {
+  heading: "Ascendiate",
+  lead: "Capturing both requires the freedom to pursue the wider opportunity.",
+  supporting:
+    "For Nicholas Zaklama, that freedom became the philosophy that led him to found Ascendiate.",
+  body: [
+    "Today, Ascendiate provides boards, investors and leadership teams with the space to step back, the objectivity to pursue the wider opportunity and the resolve to turn it into lasting value.",
+  ],
+};
 ---
 
-<section id="approach" class="mx-auto max-w-canvas px-6 py-20 md:px-12 lg:px-24 lg:py-24">
-  <div class="grid grid-cols-1 gap-10 px-0 lg:grid-cols-[180px_1fr] lg:gap-24">
-    <div class="section-header">Approach</div>
-
-    <div>
-      <!-- Supporting statement — subordinate only to the heading. -->
-      <h2
-        class="max-w-[760px] font-sans text-[clamp(1.75rem,3vw,40px)] font-medium leading-[1.2] tracking-[-0.02em] text-ink"
-        data-reveal
-      >
-        Achieving today’s objectives. Building tomorrow’s capability.
-      </h2>
-
-      <div class="mt-16 max-w-[720px] space-y-14">
-        <!-- Starting point -->
-        <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
-          <div class="section-label pt-2.5">{passages[0].label}</div>
-          <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
-            {passages[0].body}
-          </p>
-        </div>
-
-        <!-- Insight: the observation set as a restrained pull-quote — the
-             section's pivot, leading into the founder. -->
-        <figure class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
-          <div class="section-label pt-2.5">Insight</div>
-          <div>
-            <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
-              Nicholas Zaklama founded Ascendiate having made a simple observation after almost 25
-              years working alongside leadership teams:
-            </p>
-            <blockquote
-              class="mt-8 max-w-[640px] font-sans text-[clamp(1.5rem,2.4vw,30px)] font-light italic leading-[1.4] tracking-[-0.015em] text-ink"
-            >
-              “The strongest outcomes are achieved when immediate objectives become opportunities to
-              strengthen the organisation for what comes next.”
-            </blockquote>
-          </div>
-        </figure>
-
-        <!-- Ascendiate -->
-        <div class="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-[160px_1fr]" data-reveal>
-          <div class="section-label pt-2.5">{passages[1].label}</div>
-          <p class="text-[clamp(1.125rem,1.5vw,21px)] font-light leading-[1.75] tracking-[-0.005em] text-ink">
-            {passages[1].body}
-          </p>
-        </div>
+<section id="approach" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-canvas px-6 md:px-12 lg:px-24">
+    <!-- Section header + supporting statement -->
+    <div class="max-w-[900px]">
+      <div class="section-header text-[1rem] tracking-[0.1em] text-blue">
+        Approach
+        <span class="mt-3 block h-[3px] w-12 bg-blue"></span>
       </div>
-
-      <!-- Founder: restrained, secondary to the content. Portrait + name/title
-           only — no biography, no credentials, per the brief. -->
-      <div
-        class="mt-16 flex items-center gap-6 border-t border-hairline-light pt-10 md:ml-[208px] md:mt-14"
+      <h2
+        class="mt-6 font-sans text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink"
         data-reveal
       >
-        <img
-          src={portraitSrc}
-          alt="Nicholas Zaklama"
-          class="size-20 shrink-0 rounded-full object-cover object-[center_15%] grayscale md:size-24"
-          width="96"
-          height="96"
-          loading="lazy"
-        />
-        <div>
-          <div class="font-sans text-[18px] font-medium tracking-[-0.01em] text-ink">
-            Nicholas Zaklama
+        Seeing beyond the immediate objective. Creating lasting organisational
+        value.
+      </h2>
+    </div>
+
+    <!-- Mandate and Opportunity — mirrored rhythm against About -->
+    <div class="mt-20 space-y-24 lg:mt-28 lg:space-y-32">
+      {
+        blocks.map((block) => (
+          <div
+            class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
+            data-reveal
+          >
+            <EditorialImage
+              note={block.imageNote}
+              class:list={[block.imageSide === "right" && "lg:order-2"]}
+            />
+
+            <div class:list={[block.imageSide === "right" && "lg:order-1"]}>
+              <div class="block-heading">{block.heading}</div>
+
+              <h3 class="lead-statement mt-6 max-w-[30ch]">{block.lead}</h3>
+
+              {block.supporting && (
+                <p class="supporting-text mt-5 max-w-[46ch]">
+                  {block.supporting}
+                </p>
+              )}
+
+              <div class="editorial-divider max-w-[46ch]" />
+
+              <div class="max-w-[52ch]">
+                {block.body.map((para) => (
+                  <p class="body-text">{para}</p>
+                ))}
+              </div>
+            </div>
           </div>
-          <div class="mt-0.5 text-[15px] text-body">Founder and Managing Director</div>
+        ))
+      }
+
+      <!-- Ascendiate — the portrait is the visual conclusion of the section,
+           built into the block rather than appended beneath it. -->
+      <div
+        class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
+        data-reveal
+      >
+        <div>
+          <div class="block-heading">{finalBlock.heading}</div>
+
+          <h3 class="lead-statement mt-6 max-w-[30ch]">{finalBlock.lead}</h3>
+
+          <p class="supporting-text mt-5 max-w-[46ch]">
+            {finalBlock.supporting}
+          </p>
+
+          <div class="editorial-divider max-w-[46ch]"></div>
+
+          <div class="max-w-[52ch]">
+            {finalBlock.body.map((para) => <p class="body-text">{para}</p>)}
+          </div>
+        </div>
+
+        <div>
+          <img
+            src={portraitSrc}
+            alt="Nicholas Zaklama"
+            class="aspect-[4/5] w-full max-w-[420px] object-cover object-[center_20%]"
+            loading="lazy"
+          />
+          <div class="mt-5">
+            <div class="font-sans text-[1.0625rem] font-medium tracking-[-0.01em] text-ink">
+              Nicholas Zaklama
+            </div>
+            <div class="section-label mt-1 uppercase tracking-[0.08em]">
+              Founder and Managing Director
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,59 @@
+---
+/**
+ * An image slot in the editorial composition.
+ *
+ * Deliberately built as a slot rather than an <img>: the structure and
+ * typography are being agreed with Nick before the imagery is chosen, so
+ * every slot renders a placeholder until a `src` is supplied. Dropping a
+ * photograph in later is a one-line change and never a re-layout, because
+ * the aspect ratio is fixed here rather than by the image itself.
+ */
+interface Props {
+  /** Supply to render a real image; omit for the placeholder. */
+  src?: string;
+  alt?: string;
+  /** Aspect ratio of the slot. Held constant across placeholder and photo.
+   *  "fill" takes the height of its container instead (used by the hero). */
+  ratio?: "landscape" | "portrait" | "square" | "fill";
+  /** Shown in the placeholder so Nick can see what belongs where. */
+  note?: string;
+  class?: string;
+}
+
+const {
+  src,
+  alt = "",
+  ratio = "landscape",
+  note,
+  class: className = "",
+} = Astro.props;
+
+const ratioClass = {
+  landscape: "aspect-[16/11]",
+  portrait: "aspect-[3/4]",
+  square: "aspect-square",
+  fill: "h-full",
+}[ratio];
+---
+
+<div class:list={["w-full", ratioClass, "overflow-hidden", className]}>
+  {
+    src ? (
+      <img src={src} alt={alt} class="h-full w-full object-cover" />
+    ) : (
+      <div
+        class="flex h-full w-full flex-col items-center justify-center gap-1 border border-hairline-light bg-[#fafafa] text-center"
+        aria-hidden="true"
+      >
+        <span class="section-label text-[11px] tracking-[0.12em] uppercase opacity-50">
+          Image
+        </span>
+        {note && (
+          <span class="max-w-[80%] text-[12px] font-light leading-snug text-mid opacity-40">
+            {note}
+          </span>
+        )}
+      </div>
+    )
+  }
+</div>

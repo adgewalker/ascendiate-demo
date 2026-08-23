@@ -1,51 +1,59 @@
 ---
-import HeroArtwork from "./HeroArtwork.astro";
-// Copy from Nick's brief. Headline is the dominant element; eyebrow is the
-// smallest text; supporting description is subordinate to the headline.
-// Imagery is a conceptual treatment (HeroArtwork, from Claude Design) — pathways
-// converging on a point of light: direction, momentum, ascent.
+import EditorialImage from "./EditorialImage.astro";
+
+/**
+ * Hero — rebuilt to Nick's refinement brief and rough visualisation.
+ *
+ * Split composition: text on the light left half, image on the right. This
+ * keeps the light/dark contrast Nick wanted to retain, but rearranges it so
+ * the headline sits on paper rather than over the image — which is what his
+ * visualisation shows and what lets the typography lead.
+ *
+ * Copy changes: eyebrow removed entirely (the headline does the work), new
+ * supporting description, CTA now reads Mandates.
+ *
+ * The previous conceptual artwork (converging pathways) has been retired —
+ * it read as aviation and digital networks, which is the association the
+ * repositioning moves away from.
+ */
 ---
 
-<section class="mx-auto max-w-canvas px-6 pt-16 md:px-12 lg:px-24">
-  <!-- Hero graphic with overlay -->
-  <hero-drift class="relative block h-[420px] overflow-hidden md:h-[520px] lg:h-[620px]">
-    <div data-drift-target class="absolute inset-0">
-      <HeroArtwork />
-    </div>
-    <!-- Darkens the lower band for headline legibility while letting the
-         convergence glow on the upper-right read through. -->
+<section class="border-b border-hairline-light">
+  <div
+    class="mx-auto grid max-w-canvas grid-cols-1 items-stretch lg:grid-cols-[1.05fr_1fr]"
+  >
+    <!-- Text half -->
     <div
-      class="pointer-events-none absolute inset-0"
-      style="background: linear-gradient(to top, rgb(15 23 40 / 0.78) 0%, rgb(15 23 40 / 0.45) 28%, rgb(15 23 40 / 0.05) 58%, transparent 80%);"
+      class="flex flex-col justify-center px-6 py-20 md:px-12 lg:px-24 lg:py-32"
     >
-    </div>
-    <div class="absolute inset-x-8 bottom-10 md:inset-x-16 md:bottom-14">
       <h1
-        class="max-w-[1080px] font-sans font-semibold leading-[1.04] tracking-[-0.025em] text-white text-[clamp(2.5rem,7vw,88px)]"
+        class="max-w-[16ch] font-sans text-[clamp(2.75rem,5.4vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-ink"
       >
-        Shaping vision into value
+        Shaping vision into value.
       </h1>
-      <!-- Descriptor tied to the headline's baseline, led by a hairline divider
-           that spans the width of the descriptor text. -->
-      <div class="mt-6 inline-block font-sans text-[12px] text-white/70">
-        <span class="mb-3 block h-px w-full bg-white/25"></span>
-        <span class="font-medium tracking-[0.06em]">Trusted partner to leadership teams</span>
+
+      <p class="mt-9 max-w-[42ch] text-[clamp(1.0625rem,1.4vw,1.25rem)] font-light leading-[1.55] text-mid">
+        Independent judgement that aligns priorities, shapes decisions and
+        leaves organisations stronger.
+      </p>
+
+      <div class="mt-11">
+        <a
+          href="#work"
+          class="btn-ink inline-block px-8 py-[16px] text-[14px] tracking-[0.02em]"
+        >
+          Mandates
+        </a>
       </div>
     </div>
-  </hero-drift>
 
-  <!-- Supporting description + CTA -->
-  <div class="grid grid-cols-1 items-end gap-10 py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24 lg:pb-22">
-    <p class="max-w-[560px] text-[20px] leading-[1.55] text-ink">
-      Guiding strategic transactions, restructurings and operational improvement across the
-      aviation sector.
-    </p>
-    <div class="flex items-center lg:justify-self-end">
-      <a href="#work" class="btn-ink px-7 py-[15px] text-[14px] tracking-[0.01em]"> Experience </a>
+    <!-- Image half — full-bleed to the right edge of the canvas -->
+    <div class="min-h-[340px] lg:min-h-[620px]">
+      <EditorialImage
+        class="h-full"
+        ratio="fill"
+        note="Contemporary architecture — light, geometry, considered judgement"
+      />
     </div>
   </div>
 </section>
-
-<script>
-  import "../scripts/HeroDrift";
-</script>

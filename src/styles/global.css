@@ -11,7 +11,7 @@
   --color-ink: #111827; /* primary text, buttons */
   --color-mid: #3f4a59; /* secondary text, muted labels, body copy */
   --color-paper: #ffffff; /* page background */
-  --color-blue: #1848b4; /* ascendiate blue — logo, hover states, interactive */
+  --color-blue: #0741ad; /* ascendiate blue — taken from the logo artwork */
 
   /* Dark sections (reserved for future use, e.g. hero overlay) */
   --color-navy: #0f1728; /* dark navy */
@@ -22,8 +22,8 @@
   --color-body: var(--color-mid);
 
   /* Hairline rules (blue at low alpha) */
-  --color-hairline: rgb(24 72 180 / 0.2);
-  --color-hairline-light: rgb(24 72 180 / 0.12);
+  --color-hairline: rgb(7 65 173 / 0.2);
+  --color-hairline-light: rgb(7 65 173 / 0.12);
 
   /* Type — a single modern sans-serif, consistent with the logo. */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -68,7 +68,7 @@ body {
 }
 
 /* Small uppercase section label — used for in-section subheadings
-   (Challenge, Route forward, Experience themes, Contact rows). */
+   (Challenge, Route forward, Mandates, Contact rows). */
 .section-label {
   font-size: 0.75rem; /* 12px */
   font-weight: 500;
@@ -76,7 +76,7 @@ body {
   color: var(--color-mid);
 }
 
-/* Top-level section header — names the whole section (About, Experience,
+/* Top-level section header — names the whole section (About, Mandates,
    Approach, Contact). A tier above .section-label, kept monochrome: lifted
    to primary ink, slightly larger and heavier than the grey subheadings, so
    it anchors the section without adding colour. */
@@ -86,6 +86,66 @@ body {
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-ink);
+}
+
+/* ─── Editorial hierarchy (per Nick's refinement brief) ───
+   Four deliberately separated levels. The lead statement dominates each
+   block; supporting text and body copy step down in size, weight and
+   colour so the eye always knows where to begin. */
+
+/* 1. Block heading — names the block within a section (Challenge, Mandate). */
+.block-heading {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+/* Short rule beneath, per Nick's visualisation. */
+.block-heading::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: var(--color-blue);
+}
+
+/* 2. Lead statement — the dominant element. Ideally within two lines. */
+.lead-statement {
+  font-size: clamp(1.5rem, 2.4vw, 2rem); /* 24 → 32px */
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+/* 3. Supporting text — a clear step down, still ink so it reads as
+      part of the statement rather than as body copy. */
+.supporting-text {
+  font-size: clamp(1rem, 1.15vw, 1.0625rem); /* 16 → 17px */
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
+/* 4. Body text — lightest and quietest. Each paragraph carries one idea. */
+.body-text {
+  font-size: clamp(0.9375rem, 1.05vw, 1rem); /* 15 → 16px */
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-mid);
+}
+.body-text + .body-text {
+  margin-top: 0.9rem;
+}
+
+/* Gentle editorial pause between supporting text and body copy. */
+.editorial-divider {
+  height: 1px;
+  background: var(--color-hairline-light);
+  margin: 1.5rem 0;
 }
 
 /* Desktop nav link — text shifts to the Ascendiate blue and a blue
@@ -171,25 +231,6 @@ a.ink-underline:focus-visible {
    bar shrinks once and then holds. Height transition lives on the bar itself. */
 site-nav[data-scrolled] [data-nav-bar] {
   height: 60px;
-}
-
-/* ─── Hero drift animation (driven by <hero-drift>) ─── */
-@keyframes heroDrift {
-  0% {
-    transform: scale(1.06) translateY(0);
-  }
-  100% {
-    transform: scale(1.1) translateY(-1.5%);
-  }
-}
-.hero-img-motion {
-  animation: heroDrift 14s ease-in-out infinite alternate;
-  transform-origin: center 55%;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-img-motion {
-    animation: none;
-  }
 }
 
 /* ─── Scroll reveal (driven by <scroll-reveal>) ─── */
